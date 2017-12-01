@@ -1,0 +1,87 @@
+%% $Id: sleader.tex,v 1.8 2004/08/24 17:13:26 billl Exp $
+
+\graphicspath{{id/}{figs/}{ps/}{pdf/}{gif/}{gif1/}{gif2/}{gif3/}{img/}}
+\DeclareGraphicsExtensions{.ps,.id,.eps}
+
+\usepackage[latin1]{inputenc}
+\usepackage{pstricks,pst-node,pst-text,pst-3d}
+\usepackage{amsmath}
+\input{neuro}
+\input{misc}
+
+%% Definition of new colors
+\newrgbcolor{LemonChiffon}{1. 0.98 0.8}
+\newrgbcolor{LightBlue}{0.68 0.85 0.9}
+
+%% > BEGIN OF OVERLAPPED COLORS
+%% Code below devised by Denis Girou (CNRS/IDRIS - France, Denis.Girou@idris.fr)
+\newrgbcolor{LemonChiffon}{1. 0.98 0.8}
+\newrgbcolor{LightBlue}{0.68 0.85 0.9}
+\makeatletter
+\newdimen\pst@dimz
+
+%% Draw two overlapped surfaces, with computation of the mixed color for
+%% the intersection of the surfaces 
+%% #1=first  surface, #2=color of first  surface,
+%% #3=second surface, #4=color of second surface
+\def\ColoredOverlappedSurfaces#1#2#3#4{%%
+\psset{fillstyle=solid}
+%% Decode the three components of the first RGB color
+\DecodeRGBFirstColor{\csname color@#2\endcsname}%%
+\psset{fillcolor=#2}
+%% Draw first surface
+#1
+%% Decode the three components of the second RGB color
+\DecodeRGBSecondColor{\csname color@#4\endcsname}%%
+%% Compute the mixed color
+\BuildMixedColor
+%% Draw second surface
+\psclip{\psset{fillcolor=#4}#3}
+\psset{fillcolor=MixedColor}
+%% Redraw overlapped surface in the mixed color
+#1
+\endpsclip}
+
+%% Get the three components of the first color
+\def\DecodeRGBFirstColor#1{%%
+\pst@expandafter\pst@getnumiii{#1} {} {} {} {}\@nil
+\edef\pst@FirstColorR{\pst@tempg}%%
+\edef\pst@FirstColorG{\pst@temph}%%
+\edef\pst@FirstColorB{\pst@tempi}%%
+%%\typeout{Color 1=\pst@tempg,\pst@temph,\pst@tempi}%% Debug
+}
+
+%% Get the three components of the second color
+\def\DecodeRGBSecondColor#1{%%
+\pst@expandafter\pst@getnumiii{#1} {} {} {} {}\@nil
+\edef\pst@SecondColorR{\pst@tempg}%%
+\edef\pst@SecondColorG{\pst@temph}%%
+\edef\pst@SecondColorB{\pst@tempi}%%
+%%\typeout{Color 2=\pst@tempg,\pst@temph,\pst@tempi}%% Debug
+}
+
+%% Build the mixed RBG color (by means of each three components)
+\def\BuildMixedColor{%%
+%% Resulting R component
+\pst@dimz=\pst@FirstColorR pt
+\advance\pst@dimz\pst@SecondColorR pt
+\divide\pst@dimz\tw@
+\pst@dimtonum{\pst@dimz}{\pst@MixedColorR}%%
+%% Resulting G component
+\pst@dimz=\pst@FirstColorG pt
+\advance\pst@dimz\pst@SecondColorG pt
+\divide\pst@dimz\tw@
+\pst@dimtonum{\pst@dimz}{\pst@MixedColorG}%%
+%% Resulting B component
+\pst@dimz=\pst@FirstColorB pt
+\advance\pst@dimz\pst@SecondColorB pt
+\divide\pst@dimz\tw@
+\pst@dimtonum{\pst@dimz}{\pst@MixedColorB}%%
+%% Definition of the mixed color MixedColor
+\newrgbcolor{MixedColor}{%%
+\pst@MixedColorR\space \pst@MixedColorG\space \pst@MixedColorB}
+%%\typeout{Mixed color=\csname color@MixedColor\endcsname}%% Debug
+}
+\makeatother
+%% < END OF OVERLAPPED COLORS
+

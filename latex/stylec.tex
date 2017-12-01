@@ -1,0 +1,163 @@
+%-------------------------------------------------------------
+
+\oddsidemargin 0.0in 
+\evensidemargin 0.0in
+\topmargin -0.0in  
+\textwidth 470pt
+\textheight 8.75in
+\parskip 0.05in
+% \parindent 0pt
+% \columnsep 0.3in
+
+% Some useful symbols.
+ 
+\def\qed{\hfill\rule{.1in}{.1in}}
+
+\def\df{\; \stackrel \triangle = \;}
+ 
+\def\adots{\mathinner{\mkern1mu\raise1pt\vbox{\kern7pt\hbox{.}}
+                      \mkern2mu\raise4pt\hbox{.}
+                      \mkern2mu\raise7pt\hbox{.}\mkern1mu}}
+
+\def\R{\mbox{I{\kern-0.2em}R}}
+
+%------------------------------------------------------------
+
+%  Some commands for leaving blank space.
+
+%  Go horizontal.
+\def\goh#1{\rule{#1}{0in}}
+
+%  Go vertical.
+\def\gov#1{\rule{0in}{#1}}
+
+%-------------------------------------------------------------
+
+%  New section and equation definitions to allow numbering of
+%  equations according to the section in which they occur.
+
+\def\newsection#1{\section{#1} \setcounter{equation}{0}}
+ 
+\def\be{\setcounter{subequation}{0}
+        \begin{equation}}
+\def\ee{\end{equation}}
+
+%-------------------------------------------------------------
+
+%  Sub-equation definitions.
+
+\newcounter{subequation}
+\renewcommand
+   {\theequation}
+   {\arabic{equation}\alph{subequation}}
+%   {\arabic{section}.\arabic{equation}\alph{subequation}}
+
+% Begin Sub-Equation Set.
+\def\bses{\setcounter{subequation}{1}
+          \begin{equation}}
+
+% End Sub-Equation Set.
+\def\eses{\end{equation}
+          \setcounter{subequation}{0}}
+
+% Begin Sub-Equation.
+\def\bse{\stepcounter{subequation}
+         \addtocounter{equation}{-1}
+         \begin{equation}}
+
+% End Sub-Equation.
+\def\ese{\end{equation}}
+
+%------------------------------------------------------------
+
+%  Definitions for arrays of sub-equations.
+
+% Begin Sub-Equation Array.
+\def\bsea{\begin{eqnarray}
+          \setcounter{subequation}{1}}
+
+% No Sub-Equation Number.
+\def\nosenumber{\nonumber
+                \stepcounter{equation}
+                \addtocounter{subequation}{-1}}
+
+% With sub-equation number.
+\def\subno{ \stepcounter{subequation}
+              \addtocounter{equation}{-1}}
+
+% End Sub-Equation Array.
+\def\esea{\end{eqnarray}
+          \setcounter{subequation}{0}}
+
+%--------------------------------------------------------
+
+%  New appendix definitions to allow equation numbering
+%  according to appendix label.
+
+% New appendix definition.
+\def\appendix{\par
+    \setcounter{section}{0}
+    \setcounter{subsection}{0}
+    \renewcommand
+    {\theequation}
+    {\Alph{section}.\arabic{equation}\alph{subequation}}}
+
+% Appendix Section definition (To be used in place of \Section)
+% in the appendix.)
+\def\appsection#1{
+    \renewcommand{\thesection}{Appendix \Alph{section}.}
+    \section{#1}
+    \setcounter{equation}{0}
+    \setcounter{subsection}{0}
+    \renewcommand{\thesection}{\Alph{section}}}
+
+%---------------------------------------------------------------
+
+% New environment for algorithms.
+
+\newcounter{algorithm}[section]
+\def\algorithm#1{\stepcounter{algorithm} \par \bigskip
+    \noindent{\bf Algorithm \thesection.\thealgorithm}
+    \quad {\it #1}}
+
+%---------------------------------------------------------------
+
+%  Macro for drawing a double box around anything.
+
+\def\boxit#1{\vbox{\hrule\hbox{\vrule\kern3pt
+             \vbox{\kern3pt#1\kern3pt}\kern3pt\vrule}\hrule}}
+
+%---------------------------------------------------------------
+
+% Double- and single-spacing commands.
+
+% Switch to double spacing using \dspace 12pt
+\def\dspace{\multiply\normalbaselineskip 150
+            \divide\normalbaselineskip 100 \normalbaselines
+            \csname @@normalbaselineskip\endcsname\normalbaselineskip}
+
+% Switch from single spacing using \sspace
+\def\sspace{\multiply\normalbaselineskip 200
+            \divide\normalbaselineskip 300 \normalbaselines
+            \csname @@normalbaselineskip\endcsname\normalbaselineskip}
+
+ 
+%---------------------------------------------------------------
+
+% New bibliography command with user changeable title.
+% The first parameter is the witdth of label field and
+% the second parameter is the title of the reference section.
+% Example of useage:
+%       \begin{thenewbibliography}{99}{List of References}
+
+\def\thenewbibliography#1#2{\section*{#2\markboth
+ {REFERENCES}{REFERENCES}}\list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+\let\endthenewbibliography=\endlist
+ 
+

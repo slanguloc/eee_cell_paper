@@ -1,0 +1,20 @@
+% $Id: mycite.sty,v 1.7 2008/04/06 15:29:02 billl Exp $
+
+\renewcommand{\@cite}[2]{$^{\tiny #1}$\ifthenelse{\boolean{@tempswa}}{,#2}{}}
+% \renewcommand{\@cite}[1]{$^{\tiny#1}$}
+
+\renewenvironment{thebibliography}[1]
+     {
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin 0pt
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+

@@ -1,0 +1,135 @@
+% figures
+\newcommand{\cref}[1]{Chap.~\ref{#1}}
+\newcommand{\eref}[1]{Eqn.~\ref{#1}}
+\newcommand{\fref}[1]{Fig.~\ref{#1}}
+\newcommand{\bfref}[1]{\noindent {\bf Figure~\ref{#1}}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\newfig}[1]{\refstepcounter{figure}\label{#1}Fig.~\ref{#1}}
+\newcommand{\newfigure}[1]{\refstepcounter{figure}\label{#1}Figure~\ref{#1}}
+
+%% \showfig{file}{label}{[ABC]} 
+%% eg \showfig{figs/d94apr26.05.id}{2cell}{} 
+\newcommand{\showfig}[2]{
+   \pagebreak
+   \begin{figure}[htb]
+   \includegraphics[scale=1,clip]{#1} 
+   {\noindent \bf Fig.~\ref{#2}}
+   \end{figure}
+}
+%% \showbmp{file}{label}{[ABC]} 
+%% same as showfig but needed for bitmaps so don't stretch them
+\newcommand{\showbmp}[3]{
+   \pagebreak
+   \begin{figure}[htb]
+   \centerline{Figure~\ref{#2}#3}
+   %%%% \epsfig{figure=#1}}
+   \end{figure}
+}
+%% show the top of 2 or more figures on 1 page
+\newcommand{\showfiga}[3]{
+   \pagebreak
+   \begin{figure}[htb]
+   \epsfig{figure=#1,height=#2in,width=#3in}
+   \end{figure}
+}
+%% show the last of 2 or more figs on the page
+\newcommand{\showfigb}[4]{
+   \begin{figure}[htb]
+   \centerline{Figure~\ref{#2}
+   \epsfig{figure=#1,height=#3in,width=#4in}}
+   \end{figure}
+}
+%% \showfigc{file}{label}{caption} 
+%% eg \showfigc{figs/d94apr26.05.id}{2cell}{The caption} 
+\newcommand{\showfigc}[3]{
+   \pagebreak
+   \begin{figure}[htb]
+   \caption{#3}
+   \centerline{Figure~\ref{#2}
+   \epsfig{figure=#1,height=9in,width=7in}}
+   \end{figure}
+}
+
+%% \figl{file}{label}{caption} 
+%% eg \figl{figs/d94apr26.05.id}{2cell}{The caption} 
+\newcommand{\figl}[3]{
+   \begin{figure}[htb]
+   \begin{center}
+   \epsfig{figure=#1,height=3.5in}
+   \caption{#3}\label{#2}
+   \end{center}
+   \end{figure}
+}
+
+%% redo for use with graphicx
+%% \figi{label}{caption} -- file is in figs/label.id
+%% eg \figi{2cell}{The caption} 
+\newcommand{\figi}[2]{
+  \begin{figure}
+    \refstepcounter{figure}
+    \label{#1}
+    \begin{center}
+      \includegraphics[scale=.5,clip]{#1} 
+    \end{center}
+    {\noindent \bf Fig.~\ref{#1}: #2} 
+  \end{figure}
+}
+
+%% rotate
+%% \figr{label}{caption} -- file is in figs/label.id
+%% eg \figr{2cell}{The caption} 
+\newcommand{\figr}[2]{
+   \refstepcounter{figure}
+%%   \begin{figure}[htb]
+   \begin{figure}
+   \begin{center}
+   \label{#1}
+   \includegraphics[scale=.5,angle=270,clip]{#1} 
+   \end{center}
+   % \caption{#2}
+   {\noindent \bf Fig.~\ref{#1}: #2}
+   \end{figure}
+}
+
+%% allow choice of scaling
+\newcommand{\figrs}[3]{
+%%   \begin{figure}[htb]
+   \begin{figure}
+   \refstepcounter{figure}
+   \begin{center}
+   \label{#1}
+   \includegraphics[scale=#2,angle=270,clip]{#1} 
+   \end{center}
+   % \caption{#3}
+   {\noindent \bf Fig.~\ref{#1}: #3}
+   \end{figure}
+}
+
+%% scaling + rotation
+\newcommand{\figs}[3]{
+%%   \begin{figure}[htb]
+   \begin{figure}
+   \refstepcounter{figure}
+   \label{#1}
+   \begin{center}
+   \includegraphics[scale=#2,clip]{#1} 
+   \end{center}
+   % \caption{#3}
+   {\noindent \bf Fig.~\ref{#1}: #3}
+   \end{figure}
+}
+
+% figos -- without the begin{figure} end{figure}
+\newcommand{\figos}[3]{
+   \begin{center}
+   \label{#1}
+   \includegraphics[scale=#2,clip]{#1} 
+   \end{center}
+   {\noindent \bf Fig.~\ref{#1}: #3}
+}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

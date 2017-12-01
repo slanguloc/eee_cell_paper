@@ -1,0 +1,93 @@
+% twocols and fig commands
+\newcommand{\twocols}[3]{
+\hspace{-1.1\parindent}
+\begin{minipage}[t][][t]{\textwidth}
+\begin{minipage}[t][][t]{0.5\textwidth}
+#1
+\end{minipage}
+\hspace{0.05in}
+\begin{minipage}[t][][t]{0.45\textwidth}
+#3
+\end{minipage} 
+\end{minipage}
+\noindent
+#2
+}
+\newcommand{\twocola}[4]{%%% put the fig on the left
+\hspace{-1.1\parindent}
+\begin{minipage}[t][][t]{\textwidth}
+\begin{minipage}[t][][t]{#3\textwidth}
+#1
+\end{minipage}
+\begin{minipage}[t][][t]{#4\textwidth}
+#2 %%%% will need eg \vspace{-2.5in} here
+\end{minipage} 
+\end{minipage}
+\noindent
+}
+\newcommand{\twocolb}[5]{
+\hspace{-1.1\parindent}
+\begin{minipage}[t][][t]{\textwidth}
+\begin{minipage}[t][][t]{#4\textwidth}
+#1
+\end{minipage}
+\hspace{0.05in}
+\begin{minipage}[t][][b]{#5\textwidth}
+#3
+\vspace{0.0in}
+\end{minipage} 
+\end{minipage}
+\noindent
+#2
+}
+
+\newcommand{\twocolbb}[5]{
+\hspace{-1.1\parindent}
+\begin{minipage}[t][][t]{\textwidth}
+\begin{minipage}[t][][t]{#4\textwidth}
+#1
+\end{minipage}
+\hspace{-0.75in}
+\begin{minipage}[t][][b]{#5\textwidth}
+#3
+\end{minipage} 
+\end{minipage}
+\noindent
+#2
+}
+\newcommand{\twocolc}[6]{
+\hspace{-1.1\parindent}
+\begin{minipage}[t][][t]{\textwidth}
+\begin{minipage}[t][][t]{#4\textwidth}
+#1
+\end{minipage}
+\hspace{#6}
+\begin{minipage}[t][][b]{#5\textwidth}
+#3
+\end{minipage} 
+\end{minipage}
+\noindent
+#2
+}
+
+\newcommand{\figa}[3]{ 
+  \begin{figure}
+  \refstepcounter{figure}
+  \label{#2}
+  \begin{center}
+  \includegraphics[scale=#1,angle=0,clip]{#2.pdf} \\
+  \end{center}
+  {\bf Fig.~\ref{#2} #3}
+  \end{figure}
+}
+
+\newcommand{\figb}[3]{ 
+  \begin{figure}
+  \refstepcounter{figure}
+  \label{#2}
+  \begin{center}
+  \includegraphics[scale=#1,angle=270,clip]{#2.pdf} \\
+  \end{center}
+  {\bf Fig.~\ref{#2} #3}
+  \end{figure}
+}

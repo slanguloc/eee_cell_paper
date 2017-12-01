@@ -1,0 +1,41 @@
+% convenient functions
+% older version uses psfig instead of epsfig
+
+% scientific notation (sn) 
+\newcommand{\sn}[2]{$ #1 \cdot 10^{#2} $}
+
+\newcounter{cnt0}
+% formatting
+% begin and end numbered list
+\newcommand{\blist}[0]{\begin{list}{\arabic{cnt0}.}{\usecounter{cnt0}}}
+\newcommand{\elist}[0]{\end{list}}
+
+% figures
+\newcommand{\fref}[1]{Fig.~\ref{#1}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\newfig}[1]{\refstepcounter{fig}\label{#1}Fig.~\ref{#1}}
+\newcommand{\newfigure}[1]{\refstepcounter{fig}\label{#1}Figure~\ref{#1}}
+
+% \showfig{file}{label}{[ABC]} 
+% eg \showfig{figs/d94apr26.05.id}{2cell}{} 
+\newcommand{\showfig}[3]{
+   \pagebreak
+   \begin{figure}[htb]
+   \centerline{Figure~\ref{#2}#3
+   \psfig{figure=#1,height=9in,width=7in}}
+   \end{figure}
+}
+%% show the top of 2 or more figures on 1 page
+\newcommand{\showfiga}[3]{
+   \pagebreak
+   \begin{figure}[htb]
+   \psfig{figure=#1,height=#2in,width=#3in}
+   \end{figure}
+}
+%% show the last of 2 or more figs on the page
+\newcommand{\showfigb}[4]{
+   \begin{figure}[htb]
+   \centerline{Figure~\ref{#2}
+   \psfig{figure=#1,height=#3in,width=#4in}}
+   \end{figure}
+}
