@@ -1,5 +1,15 @@
 \section{Methods}
 
-\subsection{Methods Subsection}
+Simulation Methods:
 
-This is where the methods will go.
+Simulations were run in the NEURON (version 7.5) simulation environment (Carnevale and Hines, 2009).  NetPyNE (Network development Python package for NEURON) was used to organize, parallelize and analyze simulations (Dura-Bernal et al., 2016) (Lytton et al., 2016), along with custom Python code.  All code and data necessary to run the simulations used in this study are available at the online computational neuroscience database ModelDB (McDougal et al., 2017) at https://senselab.med.yale.edu/ModelDB/MODELID.
+
+Simplified cell models are based on a previous model of a corticospinal pyramidal neuron fitted to mouse neocortical M1 current-clamp results using an adaptive coordinate descent algorithm (PRAXIS) and Evolutionary Multi-objective Optimization (EMO)  (Neymotin et al., 2017).
+
+Physiological spine distribution and spine morphology based on data from mouse M2 Layer II/III pyramidal neurons (Ballesteros-Yáñez, Benavides-Piccione, Elston, Yuste, and DeFelipe, 2006).  
+
+Simplified cell models
+There are five cell models used in this study: SPI6, eee6, eee7, eee7us, and eee7ps.  
+
+SPI6 is the original cell model from (Neymotin et al. 2017).  Model eee6 is a copy of SPI6 with the basal dendrite length decreased to 200 μm and dendritic sodium maximal conductance decreased to match experimental back-propagating action potential amplitude and delay along the basal dendrite.  Model eee7 is a copy of eee6, with an additional basal dendrite (length also 200 μm).  Model eee7us is a copy of eee7, with the addition of 255 spines uniformly distributed along the basal dendrites.  Model eee7ps is a copy of eee7, with the addition of 255 spines distributed physiologically along the basal dendrites.
+
